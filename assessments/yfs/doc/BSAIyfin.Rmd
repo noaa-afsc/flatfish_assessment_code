@@ -1,5 +1,5 @@
 ---
-title: "Chapter 4: Assessment of the yellowfin sole stock in the \\ Bering Sea and Aleutian Islands
+title: "Chapter 4: Assessment of the yellowfin sole stock in the \\ Bering Sea and Aleutian Islands"
 date: "`r format(Sys.time(), '%H:%M %B %d, %Y')`"
 output:
   pdf_document:
@@ -53,24 +53,10 @@ clean_cache(clean = TRUE)
 doplots <- F
 domcmc  <- F
 doproj  <- F
-source("../runs/pm_18.R")
+source("../fm.R")
 ```
 
 ```{r child = 'text.Rmd'}
-# r child = 'ref.Rmd'}
-# r child = 'tab.Rmd'}
-# r child = 'figs.Rmd'}
 ```
-\newpage
 ```{r child = 'model.Rmd'}
-# r child = 'App.Rmd'}
 ```
-\newpage
-# \newpage
-# \tableofcontents
-
-# \listoftables
-
-# \listoffigures
-```
-
