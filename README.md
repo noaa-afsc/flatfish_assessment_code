@@ -5,14 +5,96 @@ Maintained by Jim Ianelli and Carey McGilliard
 
 This repo was formerly called “flatfish” and was owned by Jim Ianelli
 with Carey McGilliard, Ingrid Spies, and Meaghan Bryan as collaborators.
-The code is used for the BSAI northern rock sole assessment. The BSAI
-yellowfin sole assessment code came from this repo and has been modified
-separately over the last few years.
+The code is used for the BSAI northern rock sole assessment. Input files
+for accepted operational model runs for BSAI northern rock sole, as well
+as up-to-date R plotting code for model output is located here:
+<https://github.com/noaa-afsc/BSAI_NRS>. The BSAI yellowfin sole
+assessment code came from this repo and has been modified separately
+over the last few years.
 
-## Files are in “assessments” directory, source code in “src” R package code in “fmr”
+## Source code
 
-Steps to compile/use: 1. If admb needs compiling (first time always
-does) go to “src” directory and type “make” e.g.,: cd flats-master make
+The source main source code is called fm.tpl:
+<https://github.com/noaa-afsc/flatfish_assessment_code/blob/main/src/fm.tpl>.
+The code is written in ADMB: <https://github.com/admb-project>. Many old
+examples using the code can be found in the examples folder.
+
+## Instructions for compiling the fm.tpl code
+
+### Option 1: Simple
+
+1.  Install admb: <https://github.com/admb-project> (ADMB 13.0
+    recommended)  
+2.  From the ADMB command line:  
+    cd flatfish_assessment_code  admb fm.tpl
+
+### Option 2: uses make.bat file to create debug and release options
+
+If admb needs compiling (first time always does) go to “src” directory
+and type “make” e.g.,: 1. Install admb:
+<https://github.com/admb-project> (ADMB 13.0 recommended)  
+2. From the ADMB command line:  
+cd flatfish_assessment_code make
+
+## Instructions for running fm.exe once compiled
+
+### Estimation model runs
+
+The code can be run as an estimation model, and includes a projection
+component, consistent with Tier 1 fisheries management for the NPFMC. To
+use the code for an estimation model, from the command line:
+
+cd estimation_run_directory  
+fm
+
+### To run projections only
+
+Projections only runs are conducted without estimation using an existing
+run (necessary for Harvest Projection SAFE documents where an accepted
+operational model from a previous year is being used as the basis for
+projections)
+
+- set phase_proj in mod.ctl equal to 1 (typically 7 is used to specify
+  doing projections in phase 7 of estimation)  
+
+- copy the fm.par file from the desired estimation run folder to the
+  projections-only run folder and rename it to fm.pin  
+
+- update the last partial year of catches in the .dat input file to
+  include the full year’s realized catches
+
+- run from the command line:  
+  cd projection_only_folder  
+  fm -phase 0
+
+- Alternative command line options for projection only runs (all skip
+  estimation but different ways):  
+  fm -noest  
+  fm -maxfn 0
+
+## Inputs
+
+The input files necessary for running the code are called:
+
+**mod.ctl**: (select model configuration options)  
+**fm.dat** (which can point to other .dat files such as **c1.dat** from
+the nrs example c1mod4): input data which includes  
+- catches  
+- empirical weight-at-age by year and sex  
+- survey biomass index and standard deviation  
+- survey age composition data by year and sex  
+- fishery age composition data by year and sex
+
+**future_catch.dat**: estimated future catches for use in the projection
+model  
+**future_temp.dat** (not used but still required)
+
+## Outputs
+
+The main model output files are  
+fm.rep  
+ABC_OFL.rep  
+future_ABC.rep
 
 *This repository is a scientific product and is not official
 communication of the National Oceanic and Atmospheric Administration, or
