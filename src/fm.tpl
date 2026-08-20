@@ -1081,7 +1081,7 @@ PROCEDURE_SECTION
   //cout<<"growth_cov"<<growth_cov<<endl;  
   //exit(1);
   // if (Growth_Option>1&&(current_phase()<=1))
-  if (Growth_Option>1 && (last_phase()||current_phase()<=phase_wt))
+  if (Growth_Option>1 && (phase_proj==1||last_phase()||current_phase()<=phase_wt))
     Get_wt_age();
   if(!do_wt_only)
   {
