@@ -56,21 +56,13 @@ projections)
 
 - set phase_proj in mod.ctl equal to 1 (typically 7 is used to specify
   doing projections in phase 7 of estimation)  
-
 - copy the fm.par file from the desired estimation run folder to the
   projections-only run folder and rename it to fm.pin  
-
 - update the last partial year of catches in the .dat input file to
   include the full year’s realized catches
-
 - run from the command line:  
   cd projection_only_folder  
   fm -phase 0
-
-- Alternative command line options for projection only runs (all skip
-  estimation but different ways):  
-  fm -noest  
-  fm -maxfn 0
 
 ## Inputs
 

@@ -44,10 +44,6 @@ Projections only runs are conducted without estimation using an existing run (ne
 cd projection_only_folder  
 fm -phase 0  
 
-- Alternative command line options for projection only runs (all skip estimation but different ways):  
-  fm -noest  
-  fm -maxfn 0
-
 ## Inputs
 The input files necessary for running the code are called:
 
